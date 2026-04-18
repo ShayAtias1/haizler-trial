@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>טופס ניסיון - Team Haizler</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{max-width:100%;overflow-x:hidden}
@@ -310,96 +309,6 @@ function validate() {
   return ok;
 }
 
-function generatePDF(d) {
-  var jsPDF = window.jspdf.jsPDF;
-  var doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
-  var W = 210, M = 18, y = 0;
-
-  doc.setFillColor(26, 58, 92);
-  doc.rect(0, 0, W, 28, 'F');
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(18);
-  doc.setTextColor(255, 255, 255);
-  doc.text('Team Haizler', W / 2, 12, { align: 'center' });
-  doc.setFontSize(11);
-  doc.setFont('helvetica', 'normal');
-  doc.text('Trial Session Form - טופס אימון ניסיון', W / 2, 21, { align: 'center' });
-  y = 36;
-
-  doc.setFont('helvetica', 'bold');
-  doc.setFontSize(13);
-  doc.setTextColor(26, 58, 92);
-  doc.text('פרטים אישיים', W - M, y, { align: 'right' });
-  y += 8;
-
-  doc.setFontSize(11);
-  [
-    ['שם מלא', d.fname + ' ' + d.lname],
-    ['תאריך לידה', d.dob],
-    ['תעודת זהות', d.idnum],
-    ['טלפון', d.phone],
-    ['אימייל', d.email || '—'],
-    ['מגדר', d.gender],
-    ['מגבלה רפואית', d.medical + (d.medicalDesc ? ' — ' + d.medicalDesc : '')],
-  ].forEach(function(row) {
-    doc.setFont('helvetica', 'bold'); doc.setTextColor(80, 80, 80);
-    doc.text(row[0] + ':', W - M, y, { align: 'right' });
-    doc.setFont('helvetica', 'normal'); doc.setTextColor(20, 20, 20);
-    doc.text(row[1], W - M - 38, y, { align: 'right' });
-    y += 7;
-  });
-
-  y += 3;
-  doc.setDrawColor(220,220,220); doc.setLineWidth(0.3); doc.line(M, y, W - M, y);
-  y += 8;
-
-  doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(26, 58, 92);
-  doc.text('ויתור אחריות', W - M, y, { align: 'right' });
-  y += 7;
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(30, 30, 30);
-  [
-    '[V] ידועים לי כל הסיכונים הגופניים והנפשיים הכרוכים באימון.',
-    '[V] לא תהיה לי כל דרישת פיצוי כלפי המועדון בגין נזקי גוף ונפש.',
-    '[V] אני מתחייב/ת לציית להוראות המאמן בכל עת.',
-    '[V] קראתי את כל כללי ההתנהגות והבטיחות והסכמתי לפעול לפיהם.',
-  ].forEach(function(t) { doc.text(t, W - M, y, { align: 'right' }); y += 6; });
-
-  y += 4;
-  doc.setDrawColor(220,220,220); doc.line(M, y, W - M, y);
-  y += 8;
-
-  doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(26, 58, 92);
-  doc.text('חתימת המשתתף/ת', W - M, y, { align: 'right' });
-  y += 6;
-  doc.addImage(document.getElementById('sigCanvas').toDataURL('image/png'), 'PNG', M, y, 80, 32);
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(10); doc.setTextColor(80, 80, 80);
-  doc.text('תאריך: ' + new Date().toLocaleDateString('he-IL'), W - M, y + 16, { align: 'right' });
-  y += 38;
-
-  if (d.parentName || hasSigParent) {
-    doc.setDrawColor(220,220,220); doc.line(M, y, W - M, y); y += 8;
-    doc.setFont('helvetica', 'bold'); doc.setFontSize(13); doc.setTextColor(26, 58, 92);
-    doc.text('חתימת הורה / אפוטרופוס', W - M, y, { align: 'right' });
-    y += 6;
-    if (d.parentName) {
-      doc.setFont('helvetica', 'normal'); doc.setFontSize(11); doc.setTextColor(30, 30, 30);
-      doc.text('שם ההורה: ' + d.parentName + '   ת.ז: ' + (d.parentId || '—'), W - M, y, { align: 'right' });
-      y += 7;
-    }
-    if (hasSigParent) {
-      doc.addImage(document.getElementById('sigParentCanvas').toDataURL('image/png'), 'PNG', M, y, 80, 32);
-      y += 38;
-    }
-  }
-
-  doc.setFillColor(26, 58, 92);
-  doc.rect(0, 285, W, 12, 'F');
-  doc.setFont('helvetica', 'normal'); doc.setFontSize(9); doc.setTextColor(255, 255, 255);
-  doc.text('Team Haizler | Muay Thai Club | Rehovot · Ashdod · Rishon LeZion', W / 2, 293, { align: 'center' });
-
-  return doc.output('datauristring').split(',')[1];
-}
-
 function submitForm() {
   if (!validate()) { window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
 
@@ -412,7 +321,7 @@ function submitForm() {
     email: document.getElementById('email').value.trim(),
     gender: document.querySelector('input[name="gender"]:checked').value,
     medical: document.querySelector('input[name="medical"]:checked').value,
-    medicalDesc: document.getElementById('medical-desc').value.trim(),
+    medicalDesc: document.getElementById('medical-desc') ? document.getElementById('medical-desc').value.trim() : '',
     parentName: document.getElementById('parent-name').value.trim(),
     parentId: document.getElementById('parent-id').value.trim(),
   };
@@ -420,9 +329,9 @@ function submitForm() {
   document.getElementById('submitBtn').disabled = true;
   document.getElementById('spinner').style.display = 'block';
 
-  var pdfB64 = generatePDF(d);
+  var sigImage = document.getElementById('sigCanvas').toDataURL('image/png');
+  var sigParentImage = hasSigParent ? document.getElementById('sigParentCanvas').toDataURL('image/png') : '';
 
-  // קרא קובץ רפואי אם הועלה
   var fileInput = document.getElementById('medical-file');
   var file = fileInput && fileInput.files[0];
 
@@ -433,6 +342,8 @@ function submitForm() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         fullName: d.fname + ' ' + d.lname,
+        firstName: d.fname,
+        lastName: d.lname,
         dob: d.dob,
         idnum: d.idnum,
         phone: d.phone,
@@ -445,7 +356,8 @@ function submitForm() {
         parentName: d.parentName,
         parentId: d.parentId,
         submittedAt: new Date().toLocaleDateString('he-IL'),
-        pdf: pdfB64
+        signature: sigImage,
+        signatureParent: sigParentImage
       })
     }).then(function() {
       document.getElementById('spinner').style.display = 'none';
