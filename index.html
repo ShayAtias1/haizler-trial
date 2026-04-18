@@ -329,8 +329,21 @@ function submitForm() {
   document.getElementById('submitBtn').disabled = true;
   document.getElementById('spinner').style.display = 'block';
 
-  var sigImage = document.getElementById('sigCanvas').toDataURL('image/png');
-  var sigParentImage = hasSigParent ? document.getElementById('sigParentCanvas').toDataURL('image/png') : '';
+  // כווץ את החתימה לפני השליחה
+  function compressSig(canvasId) {
+    var orig = document.getElementById(canvasId);
+    var small = document.createElement('canvas');
+    small.width = 400;
+    small.height = 150;
+    var ctx = small.getContext('2d');
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, 400, 150);
+    ctx.drawImage(orig, 0, 0, 400, 150);
+    return small.toDataURL('image/jpeg', 0.6).split(',')[1];
+  }
+
+  var sigImage = compressSig('sigCanvas');
+  var sigParentImage = hasSigParent ? compressSig('sigParentCanvas') : '';
 
   var fileInput = document.getElementById('medical-file');
   var file = fileInput && fileInput.files[0];
