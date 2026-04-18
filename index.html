@@ -24,17 +24,26 @@ body{font-family:Arial,sans-serif;direction:rtl;background:#f0f4f8;color:#1a1a1a
 .field input[type=file]{font-size:13px;padding:6px 8px}
 .req{color:#c53030}
 .err{color:#c53030;font-size:12px;margin-top:4px;display:none}
-.radio-group{display:flex;gap:16px;margin-top:6px;flex-wrap:wrap}
-.radio-group label{display:flex;align-items:center;gap:7px;font-size:15px;cursor:pointer;font-weight:400}
-.radio-group input{width:17px;height:17px;accent-color:#1d4ed8;cursor:pointer}
+.radio-group{display:flex;gap:10px;margin-top:8px;flex-wrap:wrap}
+.radio-group label{display:flex;align-items:center;gap:10px;font-size:15px;cursor:pointer;font-weight:400;background:#f8fafc;border:2px solid #cbd5e1;border-radius:10px;padding:10px 16px;transition:all .15s;user-select:none}
+.radio-group label:hover{background:#dbeafe;border-color:#3b82f6}
+.radio-group input[type=radio]{display:none}
+.radio-group input[type=radio]+.radio-dot{width:20px;height:20px;border-radius:50%;border:2px solid #94a3b8;background:#fff;flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.radio-group input[type=radio]:checked+.radio-dot{border-color:#1d4ed8;background:#1d4ed8}
+.radio-group input[type=radio]:checked+.radio-dot::after{content:'';width:8px;height:8px;border-radius:50%;background:#fff;display:block}
+.radio-group input[type=radio]:checked~.radio-label{color:#1d4ed8;font-weight:600}
+.radio-group label:has(input:checked){background:#dbeafe;border-color:#1d4ed8}
+
+.check-item{display:flex;align-items:flex-start;gap:10px;margin-bottom:8px;cursor:pointer;user-select:none}
+.check-item input[type=checkbox]{display:none}
+.check-box{width:22px;height:22px;border-radius:6px;border:2px solid #94a3b8;background:#fff;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;transition:all .15s}
+.check-item input[type=checkbox]:checked~.check-box{border-color:#1d4ed8;background:#1d4ed8}
+.check-item input[type=checkbox]:checked~.check-box::after{content:'✓';color:#fff;font-size:14px;font-weight:700;line-height:1}
+.check-item .check-text{font-size:14px;color:#1a1a1a;line-height:1.6;word-break:break-word;flex:1}
 .warn-box{background:#fffbeb;border:1px solid #fcd34d;border-radius:8px;padding:10px 12px;margin-top:10px;font-size:13px;color:#78350f;display:none;line-height:1.5}
 .rules-box{background:#f8fafc;border:1px solid #e2e8f0;border-radius:10px;padding:0.9rem 1rem;margin:10px 0 4px;overflow:hidden}
 .rules-box li{font-size:13px;color:#2d3748;margin-bottom:8px;line-height:1.6;padding-right:2px;list-style:none;word-break:break-word}
 .rules-box li:last-child{margin-bottom:0}
-.check-item{display:flex;align-items:flex-start;gap:12px;margin-bottom:10px;padding:8px 0;border-bottom:0.5px solid #f0f4f8}
-.check-item:last-of-type{border-bottom:none}
-.check-item input[type=checkbox]{width:22px;height:22px;flex-shrink:0;margin-top:1px;accent-color:#1d4ed8;cursor:pointer}
-.check-item span{font-size:14px;color:#1a1a1a;line-height:1.6;word-break:break-word;flex:1}
 canvas{width:100%;height:150px;border:1px solid #cbd5e1;border-radius:10px;touch-action:none;background:#fff;display:block;cursor:crosshair}
 .sig-label{font-size:13px;color:#4a5568;margin-bottom:8px;font-weight:600}
 .clear-btn{font-size:13px;background:none;border:1px solid #cbd5e1;border-radius:8px;padding:5px 14px;cursor:pointer;color:#64748b;margin-top:8px;float:left}
@@ -107,9 +116,9 @@ canvas{width:100%;height:150px;border:1px solid #cbd5e1;border-radius:10px;touch
       <div class="field">
         <label>מגדר <span class="req">*</span></label>
         <div class="radio-group">
-          <label><input type="radio" name="gender" value="זכר"> זכר</label>
-          <label><input type="radio" name="gender" value="נקבה"> נקבה</label>
-          <label><input type="radio" name="gender" value="אחר"> אחר</label>
+          <label><input type="radio" name="gender" value="זכר"><span class="radio-dot"></span><span class="radio-label">זכר</span></label>
+          <label><input type="radio" name="gender" value="נקבה"><span class="radio-dot"></span><span class="radio-label">נקבה</span></label>
+          <label><input type="radio" name="gender" value="אחר"><span class="radio-dot"></span><span class="radio-label">אחר</span></label>
         </div>
         <div class="err" id="err-gender">יש לבחור מגדר</div>
       </div>
@@ -123,8 +132,8 @@ canvas{width:100%;height:150px;border:1px solid #cbd5e1;border-radius:10px;touch
       <div class="field">
         <label>האם קיימת מגבלה רפואית? <span class="req">*</span></label>
         <div class="radio-group">
-          <label><input type="radio" name="medical" value="לא" checked> לא</label>
-          <label><input type="radio" name="medical" value="כן"> כן</label>
+          <label><input type="radio" name="medical" value="לא" checked><span class="radio-dot"></span><span class="radio-label">לא</span></label>
+          <label><input type="radio" name="medical" value="כן"><span class="radio-dot"></span><span class="radio-label">כן</span></label>
         </div>
       </div>
       <div class="warn-box" id="medical-warn">
@@ -161,20 +170,20 @@ canvas{width:100%;height:150px;border:1px solid #cbd5e1;border-radius:10px;touch
     <div class="card">
       <div class="card-title">ויתור אחריות — יש לסמן את כל הסעיפים</div>
       <label class="check-item">
-        <input type="checkbox" id="c1">
-        <span>ידועים לי כל הסיכונים הגופניים והנפשיים הכרוכים במהלך האימונים, התחרויות והסמינרים.</span>
+        <input type="checkbox" id="c1"><span class="check-box"></span>
+        <span class="check-text">ידועים לי כל הסיכונים הגופניים והנפשיים הכרוכים במהלך האימונים, התחרויות והסמינרים.</span>
       </label>
       <label class="check-item">
-        <input type="checkbox" id="c2">
-        <span>ידוע לי כי לא תהיה לי שום דרישת פיצוי בשום דרך כלפי מועדון "טים הייזלר" בגין נזקי גוף ונפש שייגרמו לי עקב ההשתתפות.</span>
+        <input type="checkbox" id="c2"><span class="check-box"></span>
+        <span class="check-text">ידוע לי כי לא תהיה לי שום דרישת פיצוי בשום דרך כלפי מועדון "טים הייזלר" בגין נזקי גוף ונפש שייגרמו לי עקב ההשתתפות.</span>
       </label>
       <label class="check-item">
-        <input type="checkbox" id="c3">
-        <span>אני מתחייב/ת לציית להוראות המאמן בכל עת. המאמן רשאי להרחיק חניך מהאימון בשל בעיית משמעת, בטיחות או התנהגות.</span>
+        <input type="checkbox" id="c3"><span class="check-box"></span>
+        <span class="check-text">אני מתחייב/ת לציית להוראות המאמן בכל עת. המאמן רשאי להרחיק חניך מהאימון בשל בעיית משמעת, בטיחות או התנהגות.</span>
       </label>
       <label class="check-item">
-        <input type="checkbox" id="c4">
-        <span>קראתי את כללי ההתנהגות והבטיחות המפורטים לעיל, הבנתי אותם ואני מסכים/ה לפעול לפיהם.</span>
+        <input type="checkbox" id="c4"><span class="check-box"></span>
+        <span class="check-text">קראתי את כללי ההתנהגות והבטיחות המפורטים לעיל, הבנתי אותם ואני מסכים/ה לפעול לפיהם.</span>
       </label>
       <div class="err" id="err-checks" style="margin-top:4px">יש לסמן את כל ארבעת הסעיפים</div>
     </div>
