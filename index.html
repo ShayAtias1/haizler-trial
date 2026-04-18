@@ -197,7 +197,8 @@ canvas{width:100%;height:150px;border:1px solid #cbd5e1;border-radius:10px;touch
 
       <div class="minor-section">
         <div class="minor-title">לקטינים בלבד (מתחת לגיל 18) — חתימת הורה / אפוטרופוס</div>
-        <div class="row2" style="margin-bottom:12px">
+        <p style="font-size:12px;color:#64748b;margin-bottom:10px">ההורה/אפוטרופוס יחתום בתיבת החתימה למעלה</p>
+        <div class="row2">
           <div class="field" style="margin-bottom:0">
             <label>שם ההורה</label>
             <input id="parent-name" type="text" placeholder="שם מלא">
@@ -207,10 +208,6 @@ canvas{width:100%;height:150px;border:1px solid #cbd5e1;border-radius:10px;touch
             <input id="parent-id" type="text" placeholder="מספר ת.ז">
           </div>
         </div>
-        <p class="sig-label">חתימת ההורה:</p>
-        <canvas id="sigParentCanvas"></canvas>
-        <button class="clear-btn" type="button" onclick="clearSig('sigParentCanvas')">נקה חתימה</button>
-        <div style="clear:both"></div>
       </div>
 
       <p style="font-size:12px;color:#64748b;margin-top:1rem;line-height:1.6">
@@ -225,7 +222,7 @@ canvas{width:100%;height:150px;border:1px solid #cbd5e1;border-radius:10px;touch
   <div class="success" id="success-area">
     <div class="success-icon">✅</div>
     <div class="success-title">הטופס נשלח בהצלחה!</div>
-    <div class="success-sub">הטופס החתום נשלח כ-PDF לבעל המכון.<br>ברוך הבא למשפחת טים הייזלר! 🥊</div>
+    <div class="success-sub">הטופס החתום נשלח אליך במייל כ-PDF.<br>ברוך הבא למשפחת טים הייזלר! 🥊</div>
   </div>
 </div>
 
@@ -278,7 +275,6 @@ function setupCanvas(id) {
 }
 
 setupCanvas('sigCanvas');
-setupCanvas('sigParentCanvas');
 
 function clearSig(id) {
   var c = document.getElementById(id);
