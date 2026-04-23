@@ -75,7 +75,7 @@ canvas{width:100%;height:150px;border:1px solid #cbd5e1;border-radius:10px;touch
   <div id="form-area">
 
     <div class="card">
-      <div class="card-title">פרטים אישיים של המתאמן</div>
+      <div class="card-title">פרטים אישיים</div>
       <div class="row2">
         <div class="field">
           <label>שם פרטי <span class="req">*</span></label>
@@ -154,32 +154,49 @@ canvas{width:100%;height:150px;border:1px solid #cbd5e1;border-radius:10px;touch
       <p style="font-size:14px;color:#2d3748;margin-bottom:10px">אנא קרא/י בעיון לפני החתימה:</p>
       <div class="rules-box">
         <ul>
-          <li>📌 יש להגיע כ-15 דקות לפני תחילת האימון. במקרה של איחור - יש להמתין מחוץ לשטח האימון לאישור המאמן.</li>
-          <li>📌 כל יציאה משטח האימון (כולל שירותים ושתייה) תתבצע רק לאחר קבלת רשות מהמאמן - מטעמי בטיחות.</li>
-          <li>📌 <strong>ציוד לאימון הניסיון יסופק על ידי המועדון</strong> - במידת הצורך נספק כפפות ומגיני רגליים. שימו לב: מדובר בציוד משותף המשרת את מתאמני הניסיון, ולכן חשוב מאוד לשמור על היגיינה האישית - לרחוץ ידיים ורגליים בסבון לפני ואחרי השימוש בציוד.</li>
+          <li>📌 יש להגיע כ-15 דקות לפני תחילת האימון. במקרה של איחור — יש להמתין מחוץ לשטח האימון לאישור המאמן.</li>
+          <li>📌 אימון עצמאי, משחקי לחימה ותרגול טכני ייערכו אך ורק בזמן האימון ובהוראת המאמן ובפיקוחו.</li>
+          <li>📌 כל יציאה משטח האימון (כולל שירותים ושתייה) תתבצע רק לאחר קבלת רשות מהמאמן — מטעמי בטיחות.</li>
+          <li>📌 <strong>ציוד לאימון הניסיון יסופק על ידי המועדון</strong> — במידת הצורך נספק כפפות ומגיני רגליים. שימו לב: מדובר בציוד משותף המשרת את מתאמני הניסיון, ולכן חשוב מאוד לשמור על היגיינה האישית — לרחוץ ידיים ורגליים בסבון לפני ואחרי השימוש בציוד.</li>
           <li>📌 יש לשמור על ניקיון אישי: מקלחת ודאודורנט לפני ההגעה לאימון, ציפורניים גזוזות באצבעות הידיים והרגליים, שיער ארוך קשור.</li>
           <li>📌 יש לשמור על יחסי חברות וכבוד הדדי עם כל המתאמנים בכל עת.</li>
           <li>📌 בתחילת האימון יש להסיר טבעות, שרשראות, עגילים וחפצים חדים העלולים לגרום לפציעות.</li>
+          <li>📌 <strong>הידע הנרכש נחשב ככלי נשק — חל איסור מוחלט להשתמש בו מחוץ למועדון.</strong></li>
         </ul>
       </div>
     </div>
 
     <div class="card">
-      <div class="card-title">אחריות אישית וכיסוי ביטוחי</div>
-      <p>ידועים לי כל הסיכונים הגופניים והנפשיים הכרוכים במהלך האימונים, התחרויות והסמינרים.<br>ידוע לי כי לא תהיה לי שום דרישת פיצוי בשום דרך כלפי מועדון "טים הייזלר" בגין נזקי גוף ונפש שייגרמו לי עקב ההשתתפות.<br>אני מתחייב/ת לציית להוראות המאמן בכל עת. המאמן רשאי להרחיק חניך מהאימון בשל בעיית משמעת, בטיחות או התנהגות.<br>קראתי את כללי ההתנהגות והבטיחות המפורטים לעיל, הבנתי אותם ואני מסכים/ה לפעול לפיהם.</p>
+      <div class="card-title">ויתור אחריות — יש לסמן את כל הסעיפים</div>
+      <label class="check-item">
+        <input type="checkbox" id="c1"><span class="check-box"></span>
+        <span class="check-text">ידועים לי כל הסיכונים הגופניים והנפשיים הכרוכים במהלך האימונים, התחרויות והסמינרים.</span>
+      </label>
+      <label class="check-item">
+        <input type="checkbox" id="c2"><span class="check-box"></span>
+        <span class="check-text">ידוע לי כי לא תהיה לי שום דרישת פיצוי בשום דרך כלפי מועדון "טים הייזלר" בגין נזקי גוף ונפש שייגרמו לי עקב ההשתתפות.</span>
+      </label>
+      <label class="check-item">
+        <input type="checkbox" id="c3"><span class="check-box"></span>
+        <span class="check-text">אני מתחייב/ת לציית להוראות המאמן בכל עת. המאמן רשאי להרחיק חניך מהאימון בשל בעיית משמעת, בטיחות או התנהגות.</span>
+      </label>
+      <label class="check-item">
+        <input type="checkbox" id="c4"><span class="check-box"></span>
+        <span class="check-text">קראתי את כללי ההתנהגות והבטיחות המפורטים לעיל, הבנתי אותם ואני מסכים/ה לפעול לפיהם.</span>
+      </label>
+      <div class="err" id="err-checks" style="margin-top:4px">יש לסמן את כל ארבעת הסעיפים</div>
     </div>
 
     <div class="card">
       <div class="card-title">חתימה</div>
-      <p class="sig-label">חתימת המשתתף/ת - חתום/י באמצעות האצבע (נייד) או העכבר (מחשב):</p>
+      <p class="sig-label">חתימת המשתתף/ת — חתום/י באמצעות האצבע (נייד) או העכבר (מחשב):</p>
       <canvas id="sigCanvas"></canvas>
       <button class="clear-btn" type="button" onclick="clearSig('sigCanvas')">נקה חתימה</button>
       <div style="clear:both;margin-top:6px"></div>
-      <p style="font-size:12px;color:#64748b;margin-top:1rem;line-height:1.6">בחתימתי אני מצהיר/ה כי קראתי את הטופס במלואו, הבנתי אותו ואני מסכים/ה לכל האמור בו.</p>
       <div class="err" id="err-sig">יש לחתום לפני השליחה</div>
 
       <div class="minor-section">
-        <div class="minor-title">לקטינים בלבד (מתחת לגיל 18) - חתימת הורה / אפוטרופוס</div>
+        <div class="minor-title">לקטינים בלבד (מתחת לגיל 18) — חתימת הורה / אפוטרופוס</div>
         <p style="font-size:12px;color:#64748b;margin-bottom:10px">ההורה/אפוטרופוס יחתום בתיבת החתימה למעלה</p>
         <div class="row2">
           <div class="field" style="margin-bottom:0">
@@ -193,6 +210,9 @@ canvas{width:100%;height:150px;border:1px solid #cbd5e1;border-radius:10px;touch
         </div>
       </div>
 
+      <p style="font-size:12px;color:#64748b;margin-top:1rem;line-height:1.6">
+        בחתימתי אני מצהיר/ה כי קראתי את הטופס במלואו, הבנתי אותו ואני מסכים/ה לכל האמור בו.
+      </p>
     </div>
 
     <div class="spinner" id="spinner">⏳ מכין ושולח את הטופס, אנא המתן...</div>
@@ -279,6 +299,8 @@ function validate() {
   });
   var gender = document.querySelector('input[name="gender"]:checked');
   showErr('err-gender', !gender); if (!gender) ok = false;
+  var checks = ['c1','c2','c3','c4'].every(function(id) { return document.getElementById(id).checked; });
+  showErr('err-checks', !checks); if (!checks) ok = false;
   showErr('err-sig', !hasSig); if (!hasSig) ok = false;
   return ok;
 }
@@ -317,7 +339,7 @@ function submitForm() {
   }
 
   var sigImage = compressSig('sigCanvas');
-  var sigParentImage = hasSigParent ? compressSig('sigParentCanvas') : '';
+  var sigParentImage = '';
 
   var fileInput = document.getElementById('medical-file');
   var file = fileInput && fileInput.files[0];
