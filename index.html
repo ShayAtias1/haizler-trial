@@ -283,8 +283,6 @@ function validate() {
   });
   var gender = document.querySelector('input[name="gender"]:checked');
   showErr('err-gender', !gender); if (!gender) ok = false;
-  var checks = ['c1','c2','c3','c4'].every(function(id) { return document.getElementById(id).checked; });
-  showErr('err-checks', !checks); if (!checks) ok = false;
   showErr('err-sig', !hasSig); if (!hasSig) ok = false;
   return ok;
 }
