@@ -281,6 +281,17 @@ function validate() {
     var bad = !document.getElementById(pair[0]).value.trim();
     showErr(pair[1], bad); if (bad) ok = false;
   });
+
+  var emailVal = document.getElementById('email').value.trim();
+  var emailRe = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (emailVal && !emailRe.test(emailVal)) {
+    document.getElementById('err-email').textContent = 'כתובת מייל לא תקינה';
+    showErr('err-email', true);
+    ok = false;
+  } else if (emailVal) {
+    document.getElementById('err-email').textContent = 'שדה חובה';
+  }
+
   var gender = document.querySelector('input[name="gender"]:checked');
   showErr('err-gender', !gender); if (!gender) ok = false;
   showErr('err-sig', !hasSig); if (!hasSig) ok = false;
